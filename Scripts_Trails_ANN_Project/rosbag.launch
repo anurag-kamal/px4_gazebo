@@ -1,0 +1,22 @@
+
+<!-- -*- xml -*- -->
+<!--
+   magic recorder
+  -->
+
+<launch>
+
+<node name="1_throttler" type="throttle" pkg="topic_tools" args="messages /camera1/usb_cam/image_raw 5 /cam1_throttled" />
+<node name="2_throttler" type="throttle" pkg="topic_tools" args="messages /camera2/usb_cam2/image_raw 5 /cam2_throttled" />
+<node name="3_throttler" type="throttle" pkg="topic_tools" args="messages /camera3/usb_cam3/image_raw 5 /cam3_throttled" />
+<node name="4_throttler" type="throttle" pkg="topic_tools" args="messages /husky_velocity_controller/odom 5 /odom_throttled" />
+<node name="5_throttler" type="throttle" pkg="topic_tools" args="messages /scan 5 /scan_throttled" />
+<node name="6_throttler" type="throttle" pkg="topic_tools" args="messages /joyteleop 5 /joy_throttled" />
+
+
+ <node pkg="rosbag" type="rosbag" name="rosbagger"
+       args="record -o /cam1_throttled /cam2_throttled /cam3_throttled /odom_throttled /scan_throttled /joy_throttled"/>   
+</launch>
+
+
+
